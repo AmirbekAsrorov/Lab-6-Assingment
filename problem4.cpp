@@ -43,7 +43,7 @@ int main() {
 
     cout << "Pairs with minimum absolute difference:" << endl;
     for (const vector<int>& pair : minAbsDiffPairs) {
-        cout << "[" << pair[0] << ", " << pair[1] << "]" << endl;
+        cout  << pair[0] << " " << pair[1]  << endl;
     }
 
     return 0;
