@@ -5,30 +5,19 @@
 using namespace std;
 
 void sortArray(vector<int>& arr, int n) {
-    vector<int> even;
-    vector<int> odd;
-
-    for (int i = 0; i < n; i++) {
-        if (i % 2 == 0) {
-            even.push_back(arr[i]);
-        } else {
-            odd.push_back(arr[i]);
+    for (int i = 0; i < n; i += 2) {
+        for (int j = i + 2; j < n; j += 2) {
+            if (arr[i] > arr[j]) {
+                swap(arr[i], arr[j]);
+            }
         }
     }
 
-    sort(even.begin(), even.end());
-    sort(odd.rbegin(), odd.rend());
-
-    int evenIndex = 0;
-    int oddIndex = 0;
-
-    for (int i = 0; i < n; i++) {
-        if (i % 2 == 0) {
-            arr[i] = even[evenIndex];
-            evenIndex++;
-        } else {
-            arr[i] = odd[oddIndex];
-            oddIndex++;
+    for (int i = 1; i < n; i += 2) {
+        for (int j = i + 2; j < n; j += 2) {
+            if (arr[i] < arr[j]) {
+                swap(arr[i], arr[j]);
+            }
         }
     }
 }
