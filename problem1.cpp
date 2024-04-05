@@ -5,7 +5,7 @@
 using namespace std;
 
 void sortArray(vector<int>& arr, int n) {
-    for (int i = 0; i < n; i += 2) {
+    for (int i = 1; i < n; i += 2) {
         for (int j = i + 2; j < n; j += 2) {
             if (arr[i] > arr[j]) {
                 swap(arr[i], arr[j]);
@@ -13,7 +13,7 @@ void sortArray(vector<int>& arr, int n) {
         }
     }
 
-    for (int i = 1; i < n; i += 2) {
+    for (int i = 0; i < n; i += 2) {
         for (int j = i + 2; j < n; j += 2) {
             if (arr[i] < arr[j]) {
                 swap(arr[i], arr[j]);
