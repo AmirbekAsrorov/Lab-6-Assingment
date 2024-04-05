@@ -4,25 +4,24 @@
 
 using namespace std;
 
-vector<vector<int>> findMinAbsDiffPairs(vector<int>& arr) {
-    sort(arr.begin(), arr.end());
+void findMinAbsDiffPairs(vector<int>& arr, int index, int minDiff, vector<vector<int>>& pairs) {
+    if (index >= arr.size()) {
+        return;
+    }
 
-    int minDiff = INT_MAX;
-    vector<vector<int>> pairs;
-
-    for (int i = 1; i < arr.size(); i++) {
-        int diff = arr[i] - arr[i - 1];
+    if (index > 0) {
+        int diff = arr[index] - arr[index - 1];
 
         if (diff < minDiff) {
             minDiff = diff;
             pairs.clear();
-            pairs.push_back({arr[i - 1], arr[i]});
+            pairs.push_back({arr[index - 1], arr[index]});
         } else if (diff == minDiff) {
-            pairs.push_back({arr[i - 1], arr[i]});
+            pairs.push_back({arr[index - 1], arr[index]});
         }
     }
 
-    return pairs;
+    findMinAbsDiffPairs(arr, index + 1, minDiff, pairs);
 }
 
 int main() {
@@ -37,7 +36,10 @@ int main() {
         cin >> arr[i];
     }
 
-    vector<vector<int>> minAbsDiffPairs = findMinAbsDiffPairs(arr);
+    sort(arr.begin(), arr.end());
+
+    vector<vector<int>> minAbsDiffPairs;
+    findMinAbsDiffPairs(arr, 1, arr[1] - arr[0], minAbsDiffPairs);
 
     cout << "Pairs with minimum absolute difference:" << endl;
     for (const vector<int>& pair : minAbsDiffPairs) {
